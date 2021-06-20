@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Quiz</string>
+    <string name="question_label">Question 1</string>
+    <string name="toast_button_not_selected">Вариант ответа не выбран</string>
 </resources>
