@@ -4,12 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.rsschool.quiz.contract.navigator
 import com.rsschool.quiz.databinding.FragmentQuiz2Binding
 
 class FragmentQuizTwo : Fragment() {
     private lateinit var binding: FragmentQuiz2Binding
+    //lateinit var viewModel: TestViewModel
+    var test = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -17,6 +23,7 @@ class FragmentQuizTwo : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentQuiz2Binding.inflate(inflater, container, false)
+        //viewModel = ViewModelProvider(this).get(TestViewModel::class.java)
         binding.questionTextView.text = requireArguments().getString(FragmentQuizTwo.ARG_QUESTION_VALUE)
         binding.optionOne.text = requireArguments().getString(FragmentQuizTwo.ARG_ANSWER1_VALUE)
         binding.optionTwo.text = requireArguments().getString(FragmentQuizTwo.ARG_ANSWER2_VALUE)
@@ -24,7 +31,19 @@ class FragmentQuizTwo : Fragment() {
         binding.optionFour.text = requireArguments().getString(FragmentQuizTwo.ARG_ANSWER4_VALUE)
         binding.optionFive.text = requireArguments().getString(FragmentQuizTwo.ARG_ANSWER5_VALUE)
         binding.previousButton.setOnClickListener { navigator().goBack() }
+        binding.nextButton.isEnabled = false
+
+        binding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener{
+                group, checkedId -> val radio = binding.radioGroup.findViewById<RadioButton>(checkedId)
+            test = radio.text.toString()
+            //Toast.makeText(context," On checked change : ${radio.text}", Toast.LENGTH_SHORT).show()
+            binding.nextButton.isEnabled = true
+        })
+
         binding.nextButton.setOnClickListener{
+            navigator().addData(1, test)
+            //viewModel.owner2 = test
+            //navigator().printAnswers()
             navigator().goToFragmentQuizThree()//Toast.makeText(activity,R.string.toast_button_not_selected, Toast.LENGTH_LONG).show()
         }
         return binding.root

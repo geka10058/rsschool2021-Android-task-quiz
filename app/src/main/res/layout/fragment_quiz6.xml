@@ -122,18 +122,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/previous_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="PREVIUS"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="@+id/scroll"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/scroll"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
     <Button
         android:id="@+id/previous_button"
         android:layout_width="120dp"

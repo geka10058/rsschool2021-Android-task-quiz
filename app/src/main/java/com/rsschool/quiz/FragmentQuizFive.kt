@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.rsschool.quiz.contract.navigator
 import com.rsschool.quiz.databinding.FragmentQuiz5Binding
 
 class FragmentQuizFive : Fragment() {
     private lateinit var binding: FragmentQuiz5Binding
+    var test = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +28,19 @@ class FragmentQuizFive : Fragment() {
         binding.optionFour.text = requireArguments().getString(FragmentQuizFive.ARG_ANSWER4_VALUE)
         binding.optionFive.text = requireArguments().getString(FragmentQuizFive.ARG_ANSWER5_VALUE)
         binding.previousButton.setOnClickListener { navigator().goBack() }
+
+        binding.nextButton.isEnabled = false
+
+        binding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener{
+                group, checkedId -> val radio = binding.radioGroup.findViewById<RadioButton>(checkedId)
+            test = radio.text.toString()
+            //Toast.makeText(context," On checked change : ${radio.text}", Toast.LENGTH_SHORT).show()
+            binding.nextButton.isEnabled = true
+        })
+
         binding.nextButton.setOnClickListener{
+            navigator().addData(4, test)
+            //navigator().printAnswers()
             navigator().goToFragmentQuizSix()//Toast.makeText(activity,R.string.toast_button_not_selected, Toast.LENGTH_LONG).show()
         }
         return binding.root

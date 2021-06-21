@@ -5,14 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.rsschool.quiz.contract.navigator
 import com.rsschool.quiz.databinding.FragmentQuiz1Binding
 import android.widget.RadioGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 
 open class FragmentQuizOne : Fragment(){
     private lateinit var binding : FragmentQuiz1Binding
+    //lateinit var viewModel: TestViewModel
+    var test = ""
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -20,6 +26,7 @@ open class FragmentQuizOne : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentQuiz1Binding.inflate(inflater, container, false)
+        //viewModel = ViewModelProvider(this).get(TestViewModel::class.java)
 
         binding.questionTextView.text = requireArguments().getString(ARG_QUESTION_VALUE)
         binding.optionOne.text = requireArguments().getString(ARG_ANSWER1_VALUE)
@@ -27,13 +34,31 @@ open class FragmentQuizOne : Fragment(){
         binding.optionThree.text = requireArguments().getString(ARG_ANSWER3_VALUE)
         binding.optionFour.text = requireArguments().getString(ARG_ANSWER4_VALUE)
         binding.optionFive.text = requireArguments().getString(ARG_ANSWER5_VALUE)
-
-        //inding.radioGroup.setOnCheckedChangeListener()
-        binding.nextButton.setOnClickListener{
-            navigator().goToFragmentQuizTwo()//Toast.makeText(activity,R.string.toast_button_not_selected, Toast.LENGTH_LONG).show()
-        }
+        binding.nextButton.isEnabled = false
         binding.previousButton.isEnabled = false
 
+        binding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener{
+            group, checkedId -> val radio = binding.radioGroup.findViewById<RadioButton>(checkedId)
+            test = radio.text.toString()
+            //Toast.makeText(context," On checked change : ${radio.text}", Toast.LENGTH_SHORT).show()
+            binding.nextButton.isEnabled = true
+        })
+
+        binding.nextButton.setOnClickListener{
+            navigator().addData(0, test)
+            //viewModel.owner1 = test
+            //navigator().printAnswers()
+            navigator().goToFragmentQuizTwo()
+        }
+/*//Рабочий кусок для непускания перехода на следующую страницу
+        binding.nextButton.setOnClickListener{
+            var id: Int = binding.radioGroup.checkedRadioButtonId
+            if (id != -1) {
+                navigator().goToFragmentQuizTwo()
+            } else {
+                Toast.makeText(context, "Вариант ответа не выбран", Toast.LENGTH_SHORT).show()
+            }
+        }*/
 
 
         binding.root

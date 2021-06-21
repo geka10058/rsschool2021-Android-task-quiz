@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 
 fun Fragment.navigator(): Navigator {
     return requireActivity() as Navigator
+
 }
 
 interface Navigator {
@@ -22,5 +23,12 @@ interface Navigator {
 
     fun goBack()
 
+    fun addData(num : Int,str: String)
+
+    fun printAnswers():String
+
+    fun goToMenu()
+
+    fun finish()
 
 }
