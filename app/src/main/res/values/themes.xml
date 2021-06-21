@@ -25,7 +25,7 @@
         <item name="android:statusBarColor">#48CFAF</item>
     </style>
 
-    <style name="Theme.Quiz.Three" parent="Theme.Quiz">
+    <style name="Theme.Quiz.Third" parent="Theme.Quiz">
         <item name="colorPrimary">#FBCEB5</item>
         <item name="colorPrimaryDark">#FB9F82</item>
         <item name="colorPrimaryVariant">#FB9F82</item>
@@ -34,4 +34,44 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">#FB9F82</item>
     </style>
+    <style name="Theme.Quiz.Fourth" parent="Theme.Quiz">
+        <item name="colorPrimary">#1771F1</item>
+        <item name="colorPrimaryDark">#0351C1</item>
+        <item name="colorPrimaryVariant">#0351C1</item>
+        <item name="colorSecondary">#1771F1</item>
+        <item name="colorSecondaryVariant">#5199FF</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#0351C1</item>
+    </style>
+
+    <style name="Theme.Quiz.Fifth" parent="Theme.Quiz">
+        <item name="colorPrimary">#D7E1E9</item>
+        <item name="colorPrimaryDark">#AFCFEA</item>
+        <item name="colorPrimaryVariant">#AFCFEA</item>
+        <item name="colorSecondary">#D7E1E9</item>
+        <item name="colorSecondaryVariant">#F2F8FD</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#AFCFEA</item>
+    </style>
+
+    <style name="Theme.Quiz.Sixth" parent="Theme.Quiz">
+        <item name="colorPrimary">#DEC0C1</item>
+        <item name="colorPrimaryDark">#F59BAF</item>
+        <item name="colorPrimaryVariant">#F59BAF</item>
+        <item name="colorSecondary">#DEC0C1</item>
+        <item name="colorSecondaryVariant">#F6DDDF</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#F59BAF</item>
+    </style>
+
+    <style name="Theme.Quiz.Seventh" parent="Theme.Quiz">
+        <item name="colorPrimary">#FF6A61</item>
+        <item name="colorPrimaryDark">#E20338</item>
+        <item name="colorPrimaryVariant">#E20338</item>
+        <item name="colorSecondary">#FF6A61</item>
+        <item name="colorSecondaryVariant">#FF6E4E</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#E20338</item>
+    </style>
+
 </resources>

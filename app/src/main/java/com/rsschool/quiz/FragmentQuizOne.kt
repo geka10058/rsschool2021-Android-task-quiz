@@ -20,12 +20,15 @@ open class FragmentQuizOne : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentQuiz1Binding.inflate(inflater, container, false)
+
         binding.questionTextView.text = requireArguments().getString(ARG_QUESTION_VALUE)
         binding.optionOne.text = requireArguments().getString(ARG_ANSWER1_VALUE)
         binding.optionTwo.text = requireArguments().getString(ARG_ANSWER2_VALUE)
         binding.optionThree.text = requireArguments().getString(ARG_ANSWER3_VALUE)
         binding.optionFour.text = requireArguments().getString(ARG_ANSWER4_VALUE)
         binding.optionFive.text = requireArguments().getString(ARG_ANSWER5_VALUE)
+
+        //inding.radioGroup.setOnCheckedChangeListener()
         binding.nextButton.setOnClickListener{
             navigator().goToFragmentQuizTwo()//Toast.makeText(activity,R.string.toast_button_not_selected, Toast.LENGTH_LONG).show()
         }
