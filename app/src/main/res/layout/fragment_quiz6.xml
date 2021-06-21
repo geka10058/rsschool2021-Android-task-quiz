@@ -20,7 +20,7 @@
             android:fitsSystemWindows="true"
             app:navigationContentDescription="Back to the previous question"
             app:navigationIcon="@drawable/ic_baseline_chevron_left_24"
-            app:title="Question 6" />
+            app:title="Последний вопрос" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -67,7 +67,7 @@
 
 
             <TextView
-                android:id="@+id/question"
+                android:id="@+id/questionTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="@id/margin_end_guideline"
                 app:layout_constraintStart_toStartOf="@id/margin_start_guideline"
-                app:layout_constraintTop_toBottomOf="@id/question">
+                app:layout_constraintTop_toBottomOf="@id/questionTextView">
 
                 <RadioButton
                     android:id="@+id/option_one"
@@ -116,8 +116,22 @@
                     tools:text="Option 5" />
 
             </RadioGroup>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/previous_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="PREVIUS"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="@+id/scroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/scroll"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <Button
         android:id="@+id/previous_button"
@@ -129,7 +143,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/next_button"
+        android:id="@+id/submit_button"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

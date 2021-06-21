@@ -20,7 +20,7 @@
             android:fitsSystemWindows="true"
             app:navigationContentDescription="Back to the previous question"
             app:navigationIcon="@drawable/ic_baseline_chevron_left_24"
-            app:title="Question 1" />
+            app:title="Первый вопрос" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -88,32 +88,32 @@
                     android:id="@+id/option_one"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Option 1" />
+                    tools:text="Первый вариант отета" />
 
                 <RadioButton
                     android:id="@+id/option_two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Option 2" />
+                    tools:text="Второй вариант ответа" />
 
                 <RadioButton
                     android:id="@+id/option_three"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Option 3" />
+                    tools:text="Третий вариант ответа" />
 
                 <RadioButton
                     android:id="@+id/option_four"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     tools:checked="true"
-                    tools:text="Option 4" />
+                    tools:text="Четвёртый вариант ответа" />
 
                 <RadioButton
                     android:id="@+id/option_five"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Option 5" />
+                    tools:text="Вариант 5" />
 
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>

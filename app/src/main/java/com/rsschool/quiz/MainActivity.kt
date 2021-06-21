@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity(), Navigator {
         if (savedInstanceState == null) {
             val fragment =
                 FragmentQuizOne.newInstance(
-                    question = "Как думаете, мы успеем написать это говно и сдать?"
+                    "Вопрос 1","Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Ответ 5"
                 )
             supportFragmentManager.beginTransaction().add(R.id.flFragment, fragment).commit()
         }
@@ -32,23 +32,23 @@ class MainActivity : AppCompatActivity(), Navigator {
     }
 
     override fun goToFragmentQuizTwo() {
-        launchFragment(Fragment_Quiz_Two.newInstance(question = "Я ТОЖЕ В АХУЕ С ТОГО, ЧТО ЭТО РАБОТАЕТ"))
+        launchFragment(FragmentQuizTwo.newInstance("Вопрос 2","Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Ответ 5"))
     }
 
     override fun goToFragmentQuizThree() {
-        TODO("Not yet implemented")
+        launchFragment(FragmentQuizThree.newInstance("Вопрос 3","Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Ответ 5"))
     }
 
     override fun goToFragmentQuizFour() {
-        TODO("Not yet implemented")
+        launchFragment(FragmentQuizFour.newInstance("Вопрос 4","Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Ответ 5"))
     }
 
     override fun goToFragmentQuizFive() {
-        TODO("Not yet implemented")
+        launchFragment(FragmentQuizFive.newInstance("Вопрос 5","Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Ответ 5"))
     }
 
     override fun goToFragmentQuizSix() {
-        TODO("Not yet implemented")
+        launchFragment(FragmentQuizSix.newInstance("Вопрос 6","Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Ответ 5"))
     }
 
     override fun goToFragmentResult() {

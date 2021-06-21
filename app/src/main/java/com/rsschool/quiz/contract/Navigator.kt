@@ -21,4 +21,6 @@ interface Navigator {
     fun goToFragmentResult()
 
     fun goBack()
+
+
 }

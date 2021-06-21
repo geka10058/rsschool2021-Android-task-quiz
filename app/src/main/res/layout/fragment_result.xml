@@ -20,16 +20,16 @@
             android:fitsSystemWindows="true"
             app:navigationContentDescription="Back to the previous question"
             app:navigationIcon="@drawable/ic_baseline_chevron_left_24"
-            app:title="Result" />
+            app:title="Результат" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
-        android:id="@+id/previous_result"
+        android:id="@+id/previousResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Your result: 6 out of 6"
+        android:text="Ваш результат: 6 из 6"
         android:textSize="20sp"
         android:textStyle=""
         android:textColor="@color/cardview_dark_background"
@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/previous_result"
+        app:layout_constraintTop_toBottomOf="@+id/previousResult"
         app:layout_constraintVertical_bias="0.134" />
 
     <Button
