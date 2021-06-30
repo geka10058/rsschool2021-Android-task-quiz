@@ -15,20 +15,15 @@ class FragmentQuizThree : Fragment() {
     private lateinit var binding: FragmentQuiz3Binding
     var test = ""
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentQuiz3Binding.inflate(inflater, container, false)
+
         binding.questionTextView.text = requireArguments().getString(FragmentQuizThree.ARG_QUESTION_VALUE)
         binding.optionOne.text = requireArguments().getString(FragmentQuizThree.ARG_ANSWER1_VALUE)
         binding.optionTwo.text = requireArguments().getString(FragmentQuizThree.ARG_ANSWER2_VALUE)
         binding.optionThree.text = requireArguments().getString(FragmentQuizThree.ARG_ANSWER3_VALUE)
         binding.optionFour.text = requireArguments().getString(FragmentQuizThree.ARG_ANSWER4_VALUE)
         binding.optionFive.text = requireArguments().getString(FragmentQuizThree.ARG_ANSWER5_VALUE)
-        binding.previousButton.setOnClickListener { navigator().goBack() }
-
         binding.nextButton.isEnabled = false
 
         binding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener{
@@ -40,9 +35,15 @@ class FragmentQuizThree : Fragment() {
 
         binding.nextButton.setOnClickListener{
             navigator().addData(2, test)
-            //navigator().printAnswers()
             navigator().goToFragmentQuizFour()//Toast.makeText(activity,R.string.toast_button_not_selected, Toast.LENGTH_LONG).show()
         }
+
+        binding.previousButton.setOnClickListener {
+            navigator().goBack() }
+        binding.toolbar.setNavigationOnClickListener{
+            navigator().goBack()
+        }
+
         return binding.root
     }
 

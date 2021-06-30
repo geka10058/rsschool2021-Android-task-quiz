@@ -1,30 +1,38 @@
 package com.rsschool.quiz
 
-import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.rsschool.quiz.contract.Navigator
+import com.rsschool.quiz.contract.navigator
 import com.rsschool.quiz.databinding.*
-import java.util.ArrayList
 import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity(), Navigator {
     private lateinit var binding: ActivityMainBinding
-    var answerList : ArrayList<String>  = arrayListOf("",":MKJBHG","","","","")
+    private var answersArray : Array <String> = arrayOf("","","","","","")
+    private val trueAnswersArray : Array <String> = arrayOf("33","Колизей","Братислава","В 33 года","От 3 до 6 литров","жаль как пчела",)
+    private val quizOneArray : Array <String> = arrayOf("Сколько букв в русском алфавите?","5", "24", "26", "32", "33")
+    private val quizTwoArray : Array <String> = arrayOf("Какое название у самого большого амфитеатра Древнего Рима? ","Лувр", "Колизей", "Капуя", "Поццуоли", "Моцарелла")
+    private val quizThreeArray : Array <String> = arrayOf("Столица Словакии?","Братислава", "Любляна", "Белград", "Вена", "Артерия")
+    private val quizFourArray : Array <String> = arrayOf("В каком возрасте был распят Иисус Христос?","Ни в каком, ведь его не существовало", "В 13 лет", "В 21 год", "В 33 года", "В 66 лет")
+    private val quizFiveArray : Array <String> = arrayOf("Сколько литров крови у взрослого человека?","От 1 до 4 литров", "От 3 до 6 литров", "От 7 до 10 литров", "8 литров", "Смотря сколько выпьет перед этим")
+    private val quizSixArray : Array <String> = arrayOf("Продолжите фразу: пархай как бабочка, ..","жаль как твоя мать", "жаль как оса", "жаль как пчела", "жаль, что ты приёмный", "Такой фразы не существует")
+    private var result = ""
+    private var report = ""
+    private var counter = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).also { setContentView(it.root) }
-        var answers = mutableListOf<String>()
+
         if (savedInstanceState == null) {
             val fragment =
-                FragmentQuizOne.newInstance(
-                    "Вопрос 1","Парильный ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Ответ 5"
-                )
+                FragmentQuizOne.newInstance(quizOneArray[0],quizOneArray[1], quizOneArray[2], quizOneArray[3], quizOneArray[4], quizOneArray[5])
             supportFragmentManager.beginTransaction().add(R.id.flFragment, fragment).commit()
         }
 
@@ -38,36 +46,89 @@ class MainActivity : AppCompatActivity(), Navigator {
             .commit()
     }
 
-    override fun printAnswers() :String {
-        return "${answerList[2]} ${answerList[3]}"
+    private fun composeEmail(emailTheme:String, emailText : String){
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_SUBJECT, emailTheme)
+            putExtra(Intent.EXTRA_TEXT, emailText)
+        }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        }
     }
 
-    override fun addData(num : Int, str: String) {
-        answerList[num].replace(answerList[num], str, false)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == android.R.id.home) goBack()
+        return true
     }
 
     override fun goToFragmentQuizTwo() {
-        launchFragment(FragmentQuizTwo.newInstance("Вопрос 2","Правильный ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Ответ 5"))
+        launchFragment(FragmentQuizTwo.newInstance(quizTwoArray[0],quizTwoArray[1], quizTwoArray[2], quizTwoArray[3], quizTwoArray[4], quizTwoArray[5]))
     }
 
     override fun goToFragmentQuizThree() {
-        launchFragment(FragmentQuizThree.newInstance("Вопрос 3","Ответ 1", "Ответ 2", "Правильный ответ 3", "Ответ 4", "Ответ 5"))
+        launchFragment(FragmentQuizThree.newInstance(quizThreeArray[0],quizThreeArray[1], quizThreeArray[2], quizThreeArray[3], quizThreeArray[4], quizThreeArray[5]))
     }
 
     override fun goToFragmentQuizFour() {
-        launchFragment(FragmentQuizFour.newInstance("Вопрос 4","Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Правильный ответ"))
+        launchFragment(FragmentQuizFour.newInstance(quizFourArray[0],quizFourArray[1], quizFourArray[2], quizFourArray[3], quizFourArray[4], quizFourArray[5]))
     }
 
     override fun goToFragmentQuizFive() {
-        launchFragment(FragmentQuizFive.newInstance("Вопрос 5","Правильный ответ", "Ответ 2", "Ответ 3", "Ответ 4", "Ответ 5"))
+        launchFragment(FragmentQuizFive.newInstance(quizFiveArray[0],quizFiveArray[1], quizFiveArray[2], quizFiveArray[3], quizFiveArray[4], quizFiveArray[5]))
     }
 
     override fun goToFragmentQuizSix() {
-        launchFragment(FragmentQuizSix.newInstance("Вопрос 6","Ответ 1", "Ответ 2", "Ответ 3", "Ответ 4", "Правильный ответ 5"))
+        launchFragment(FragmentQuizSix.newInstance(quizSixArray[0],quizSixArray[1], quizSixArray[2], quizSixArray[3], quizSixArray[4], quizSixArray[5]))
     }
 
     override fun goToFragmentResult() {
-        launchFragment(FragmentQuizResult.newInstance("жьщтш"))
+        launchFragment(FragmentQuizResult.newInstance())
+    }
+
+    override fun createEmailReport():String {
+        report = "Ваш результат составляет $counter из ${answersArray.size} \n"  +
+                "\n" +
+                "${quizOneArray[0]} \n" +
+                "Правильный ответ: ${trueAnswersArray[0]} \n" +
+                "Ваш ответ: ${answersArray[0]} \n" +
+                "__________________________\n" +
+                "${quizTwoArray[0]} \n" +
+                "Правильный ответ: ${trueAnswersArray[1]} \n" +
+                "Ваш ответ: ${answersArray[1]} \n" +
+                "__________________________\n" +
+                "${quizThreeArray[0]} \n" +
+                "Правильный ответ: ${trueAnswersArray[2]} \n" +
+                "Ваш ответ: ${answersArray[2]} \n" +
+                "__________________________\n" +
+                "${quizFourArray[0]} \n" +
+                "Правильный ответ: ${trueAnswersArray[3]} \n" +
+                "Ваш ответ: ${answersArray[3]} \n" +
+                "__________________________\n" +
+                "${quizFiveArray[0]} \n" +
+                "Правильный ответ: ${trueAnswersArray[4]} \n" +
+                "Ваш ответ: ${answersArray[4]} \n" +
+                "__________________________\n" +
+                "${quizSixArray[0]} \n" +
+                "Правильный ответ: ${trueAnswersArray[5]} \n" +
+                "Ваш ответ: ${answersArray[5]} \n"
+        return report
+    }
+
+    override fun printResaltOfQuiz() :String {
+        for (i in answersArray.indices){
+            for (k in trueAnswersArray.indices) if (answersArray[i] == trueAnswersArray[k]) counter ++
+        }
+        result = "Ваш результат: $counter из ${answersArray.size}"
+        return result
+    }
+
+    override fun addData(num : Int, str: String) {
+        answersArray[num] = str
+    }
+
+    override fun shareToEmail() {
+        composeEmail("Результаты квиза", createEmailReport())
     }
 
     override fun goBack() {
@@ -82,41 +143,11 @@ class MainActivity : AppCompatActivity(), Navigator {
         exitProcess(-1)
     }
 
-
-    /*private fun openFirstQuestionFragment(){
-        binding1 = FragmentQuiz1Binding.inflate(layoutInflater)
-        val view = binding1.root
-        setContentView(view)
-
-
-        val fragmentTransaction : FragmentTransaction = supportFragmentManager.beginTransaction()
-        Log.d(",,,", "errr")
-        fragmentOne: FragmentQuizOne = FragmentQuizOne.newInstance
-            Log.d(",,,", "not errr")
-            fragmentTransaction.replace(R.id.flFragment, fragmentOne).commit()
-    }*/
-
-    /* private fun openSecondQuestionFragment(){
-         binding2 = FragmentQuiz2Binding.inflate(layoutInflater)
-         val view = binding2.root
-         setContentView(view)
-     }
-
-     private fun openThreeQuestionFragment(){
-         binding3 = FragmentQuiz3Binding.inflate(layoutInflater)
-         val view = binding3.root
-         setContentView(view)
-     }
-
-     private fun openFourQuestionFragment(){
-         binding4 = FragmentQuiz4Binding.inflate(layoutInflater)
-         val view = binding4.root
-         setContentView(view)
-     }*/
-
-    /* override fun onButtonNextPerformed() {
-         openSecondQuestionFragment()
-     }*/
+    override fun resetCounters() {
+        result = ""
+        report = ""
+        counter = 0
+    }
 
 }
 

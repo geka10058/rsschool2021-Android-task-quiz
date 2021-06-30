@@ -17,11 +17,7 @@ class FragmentQuizSix : Fragment() {
     private lateinit var binding: FragmentQuiz6Binding
     var test = ""
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentQuiz6Binding.inflate(inflater, container, false)
         binding.questionTextView.text = requireArguments().getString(FragmentQuizSix.ARG_QUESTION_VALUE)
         binding.optionOne.text = requireArguments().getString(FragmentQuizSix.ARG_ANSWER1_VALUE)
@@ -29,8 +25,8 @@ class FragmentQuizSix : Fragment() {
         binding.optionThree.text = requireArguments().getString(FragmentQuizSix.ARG_ANSWER3_VALUE)
         binding.optionFour.text = requireArguments().getString(FragmentQuizSix.ARG_ANSWER4_VALUE)
         binding.optionFive.text = requireArguments().getString(FragmentQuizSix.ARG_ANSWER5_VALUE)
-        binding.previousButton.setOnClickListener { navigator().goBack() }
         binding.submitButton.isEnabled = false
+
         binding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener{
                 group, checkedId -> val radio = binding.radioGroup.findViewById<RadioButton>(checkedId)
             test = radio.text.toString()
@@ -40,9 +36,11 @@ class FragmentQuizSix : Fragment() {
 
         binding.submitButton.setOnClickListener{
             navigator().addData(5, test)
-            //navigator().printAnswers()
             navigator().goToFragmentResult()//Toast.makeText(activity,R.string.toast_button_not_selected, Toast.LENGTH_LONG).show()
         }
+
+        binding.previousButton.setOnClickListener { navigator().goBack() }
+        binding.toolbar.setNavigationOnClickListener{ navigator().goBack() }
 
         return binding.root
     }

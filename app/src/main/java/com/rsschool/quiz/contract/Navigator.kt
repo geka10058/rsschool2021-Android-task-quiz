@@ -25,10 +25,16 @@ interface Navigator {
 
     fun addData(num : Int,str: String)
 
-    fun printAnswers():String
+    fun printResaltOfQuiz():String
 
     fun goToMenu()
 
     fun finish()
+
+    fun createEmailReport():String
+
+    fun resetCounters()
+
+    fun shareToEmail()
 
 }

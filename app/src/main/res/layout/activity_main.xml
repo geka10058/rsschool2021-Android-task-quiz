@@ -6,9 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+   <!-- <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:fitsSystemWindows="true"
+            app:navigationIconTint="@color/deep_orange_100"
+            app:navigationContentDescription="Back to the previous question"
+            app:navigationIcon="@drawable/ic_baseline_chevron_left_24"
+            app:title="Маин" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+-->
+    <!--<com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/cyan_100"
+        tools:title="Screen Title"
+        app:titleTextColor="@color/white"
+        app:navigationIconTint="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+-->
+
     <FrameLayout
         android:id="@+id/flFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

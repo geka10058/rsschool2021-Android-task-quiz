@@ -64,7 +64,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_end="16dp" />
+                app:layout_constraintGuide_end="0dp" />
 
 
             <TextView
@@ -87,34 +87,34 @@
 
                 <RadioButton
                     android:id="@+id/option_one"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Первый вариант отета" />
+                    tools:text="Option 1" />
 
                 <RadioButton
                     android:id="@+id/option_two"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Второй вариант ответа" />
+                    tools:text="Option 2" />
 
                 <RadioButton
                     android:id="@+id/option_three"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Третий вариант ответа" />
+                    tools:text="Option 3" />
 
                 <RadioButton
                     android:id="@+id/option_four"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:checked="true"
-                    tools:text="Четвёртый вариант ответа" />
+                    tools:text="Option 4" />
 
                 <RadioButton
                     android:id="@+id/option_five"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:text="Вариант 5" />
+                    tools:text="Option 5" />
 
             </RadioGroup>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -136,7 +136,6 @@
         android:layout_margin="16dp"
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="UsingOnClickInXml" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
