@@ -1,5 +1,7 @@
 package com.rsschool.quiz.contract
 
+import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 fun Fragment.navigator(): Navigator {

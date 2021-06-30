@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.rsschool.quiz.contract.Navigator
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     private var result = ""
     private var report = ""
     private var counter = 0
+    private var fragmentCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -149,5 +151,9 @@ class MainActivity : AppCompatActivity(), Navigator {
         counter = 0
     }
 
+    override fun onBackPressed() {
+        fragmentCount = supportFragmentManager.backStackEntryCount
+        if (fragmentCount == 5) supportFragmentManager.popBackStack() else super.onBackPressed()
+    }
 }
 
