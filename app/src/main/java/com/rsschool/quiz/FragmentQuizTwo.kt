@@ -2,33 +2,27 @@ package com.rsschool.quiz
 
 import android.app.ActionBar
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import com.rsschool.quiz.contract.navigator
+import com.rsschool.quiz.databinding.FragmentQuiz1Binding
 import com.rsschool.quiz.databinding.FragmentQuiz2Binding
 
 class FragmentQuizTwo : Fragment() {
-    private lateinit var binding: FragmentQuiz2Binding
-    //lateinit var viewModel: TestViewModel
+    //private lateinit var binding: FragmentQuiz2Binding
+    private var _binding: FragmentQuiz2Binding? = null
+    private val binding get() = _binding!!
     var test = ""
     var radioId = 0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentQuiz2Binding.inflate(inflater, container, false)
-        //viewModel = ViewModelProvider(this).get(TestViewModel::class.java)
+        _binding = FragmentQuiz2Binding.inflate(inflater, container, false)
 
         binding.questionTextView.text = requireArguments().getString(FragmentQuizTwo.ARG_QUESTION_VALUE)
         binding.optionOne.text = requireArguments().getString(FragmentQuizTwo.ARG_ANSWER1_VALUE)
@@ -38,18 +32,18 @@ class FragmentQuizTwo : Fragment() {
         binding.optionFive.text = requireArguments().getString(FragmentQuizTwo.ARG_ANSWER5_VALUE)
         binding.nextButton.isEnabled = false
 
+        checkId()
+
         binding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener{
                 group, checkedId -> val radio = binding.radioGroup.findViewById<RadioButton>(checkedId)
-            radioId = checkedId
             test = radio.text.toString()
-            //Toast.makeText(context," On checked change : ${radio.text}", Toast.LENGTH_SHORT).show()
+            radioId = checkedId
+            navigator().addData(1, test)
+            navigator().getId(1, radioId)
             binding.nextButton.isEnabled = true
         })
 
         binding.nextButton.setOnClickListener{
-            navigator().addData(1, test)
-            //viewModel.owner2 = test
-            //navigator().printAnswers()
             navigator().goToFragmentQuizThree()//Toast.makeText(activity,R.string.toast_button_not_selected, Toast.LENGTH_LONG).show()
         }
 
@@ -62,22 +56,34 @@ class FragmentQuizTwo : Fragment() {
         return binding.root
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-
-        outState.run {
-            putInt(BUTTON_SELECTED, radioId)
-        }
-        super.onSaveInstanceState(outState)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-
-        if (savedInstanceState != null) {
-
+    private fun checkId(){
+        when (navigator().setId(1)){
+            R.id.option_one.hashCode() -> {
+                binding.optionOne.isChecked = true
+                binding.nextButton.isEnabled = true
+            }
+            R.id.option_two.hashCode() -> {
+                binding.optionTwo.isChecked = true
+                binding.nextButton.isEnabled = true
+            }
+            R.id.option_three.hashCode() -> {
+                binding.optionThree.isChecked = true
+                binding.nextButton.isEnabled = true
+            }
+            R.id.option_four.hashCode() -> {
+                binding.optionFour.isChecked = true
+                binding.nextButton.isEnabled = true
+            }
+            R.id.option_five.hashCode() -> {
+                binding.optionFive.isChecked = true
+                binding.nextButton.isEnabled = true
+            }
         }
-
-        //binding.radioGroup.checkedRadioButtonI = savedInstanceState.hashCode()
     }
 
     companion object {
@@ -103,8 +109,6 @@ class FragmentQuizTwo : Fragment() {
         private const val ARG_ANSWER3_VALUE = "answer3"
         private const val ARG_ANSWER4_VALUE = "answer4"
         private const val ARG_ANSWER5_VALUE = "answer5"
-        private const val BUTTON_SELECTED = "selected"
-        private var selected = -1
     }
 
 

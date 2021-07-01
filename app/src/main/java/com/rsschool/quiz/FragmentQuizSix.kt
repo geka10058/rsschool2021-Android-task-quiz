@@ -16,6 +16,7 @@ import com.rsschool.quiz.databinding.FragmentResultBinding
 class FragmentQuizSix : Fragment() {
     private lateinit var binding: FragmentQuiz6Binding
     var test = ""
+    var radioId = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentQuiz6Binding.inflate(inflater, container, false)
@@ -27,15 +28,18 @@ class FragmentQuizSix : Fragment() {
         binding.optionFive.text = requireArguments().getString(FragmentQuizSix.ARG_ANSWER5_VALUE)
         binding.submitButton.isEnabled = false
 
+        checkId()
+
         binding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener{
                 group, checkedId -> val radio = binding.radioGroup.findViewById<RadioButton>(checkedId)
             test = radio.text.toString()
-            //Toast.makeText(context," On checked change : ${radio.text}", Toast.LENGTH_SHORT).show()
+            radioId = checkedId
+            navigator().addData(5, test)
+            navigator().getId(5, radioId)
             binding.submitButton.isEnabled = true
         })
 
         binding.submitButton.setOnClickListener{
-            navigator().addData(5, test)
             navigator().goToFragmentResult()//Toast.makeText(activity,R.string.toast_button_not_selected, Toast.LENGTH_LONG).show()
         }
 
@@ -43,6 +47,31 @@ class FragmentQuizSix : Fragment() {
         binding.toolbar.setNavigationOnClickListener{ navigator().goBack() }
 
         return binding.root
+    }
+
+    private fun checkId(){
+        when (navigator().setId(5)){
+            R.id.option_one.hashCode() -> {
+                binding.optionOne.isChecked = true
+                binding.submitButton.isEnabled = true
+            }
+            R.id.option_two.hashCode() -> {
+                binding.optionTwo.isChecked = true
+                binding.submitButton.isEnabled = true
+            }
+            R.id.option_three.hashCode() -> {
+                binding.optionThree.isChecked = true
+                binding.submitButton.isEnabled = true
+            }
+            R.id.option_four.hashCode() -> {
+                binding.optionFour.isChecked = true
+                binding.submitButton.isEnabled = true
+            }
+            R.id.option_five.hashCode() -> {
+                binding.optionFive.isChecked = true
+                binding.submitButton.isEnabled = true
+            }
+        }
     }
 
     companion object {

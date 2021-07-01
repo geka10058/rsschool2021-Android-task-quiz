@@ -12,12 +12,14 @@ import com.rsschool.quiz.databinding.FragmentQuiz1Binding
 import android.widget.RadioGroup
 
 open class FragmentQuizOne : Fragment(){
-    private lateinit var binding : FragmentQuiz1Binding
+    //private lateinit var binding : FragmentQuiz1Binding
+    private var _binding: FragmentQuiz1Binding? = null
+    private val binding get() = _binding!!
     //lateinit var viewModel: TestViewModel
     var test = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = FragmentQuiz1Binding.inflate(inflater, container, false)
+        _binding = FragmentQuiz1Binding.inflate(inflater, container, false)
         //viewModel = ViewModelProvider(this).get(TestViewModel::class.java)
 
         binding.questionTextView.text = requireArguments().getString(ARG_QUESTION_VALUE)
@@ -45,6 +47,11 @@ open class FragmentQuizOne : Fragment(){
 
         binding.root
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

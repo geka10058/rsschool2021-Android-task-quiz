@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity(), Navigator {
     private val quizFourArray : Array <String> = arrayOf("В каком возрасте был распят Иисус Христос?","Ни в каком, ведь его не существовало", "В 13 лет", "В 21 год", "В 33 года", "В 66 лет")
     private val quizFiveArray : Array <String> = arrayOf("Сколько литров крови у взрослого человека?","От 1 до 4 литров", "От 3 до 6 литров", "От 7 до 10 литров", "8 литров", "Смотря сколько выпьет перед этим")
     private val quizSixArray : Array <String> = arrayOf("Продолжите фразу: пархай как бабочка, ..","жаль как твоя мать", "жаль как оса", "жаль как пчела", "жаль, что ты приёмный", "Такой фразы не существует")
+    private var idArray : Array<Int> = arrayOf(5,5,5,5,5,5)
     private var result = ""
     private var report = ""
     private var counter = 0
@@ -133,11 +134,25 @@ class MainActivity : AppCompatActivity(), Navigator {
         composeEmail("Результаты квиза", createEmailReport())
     }
 
+    override fun getId(num: Int, id: Int) {
+        idArray[num] = id
+    }
+
+    override fun setId(id: Int): Int {
+        return idArray[id]
+    }
+
     override fun goBack() {
         onBackPressed()
     }
 
-    override fun goToMenu() {
+    override fun restartQuiz() {
+        answersArray = arrayOf("","","","","","")
+        idArray = arrayOf(5,5,5,5,5,5)
+        result = ""
+        report = ""
+        counter = 0
+        fragmentCount = 0
         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 

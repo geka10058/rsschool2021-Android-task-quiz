@@ -29,7 +29,7 @@ interface Navigator {
 
     fun printResaltOfQuiz():String
 
-    fun goToMenu()
+    fun restartQuiz()
 
     fun finish()
 
@@ -38,5 +38,9 @@ interface Navigator {
     fun resetCounters()
 
     fun shareToEmail()
+
+    fun getId(num : Int, id: Int)
+
+    fun setId(id: Int):Int
 
 }

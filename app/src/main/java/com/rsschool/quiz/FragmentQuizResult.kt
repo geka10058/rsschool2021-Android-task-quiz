@@ -1,6 +1,5 @@
 package com.rsschool.quiz
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import com.rsschool.quiz.contract.navigator
 import com.rsschool.quiz.databinding.FragmentResultBinding
 
@@ -33,7 +31,7 @@ class FragmentQuizResult : Fragment() {
 
         binding.restartButton.setOnClickListener {
             navigator().resetCounters()
-            navigator().goToMenu() }
+            navigator().restartQuiz() }
         binding.exitButton.setOnClickListener { navigator().finish() }
 
         binding.sendEmailBtn.setOnClickListener {
